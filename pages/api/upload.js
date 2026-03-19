@@ -1,6 +1,12 @@
 import formidable from 'formidable';
-import fs from 'fs';
-import path from 'path';
+import fs from "fs";
+import path from "path";
+
+const uploadDir = path.join(process.cwd(), "uploads");
+
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
 //import { runOCR } from '../../lib/vision.js';
 import { analyzeExpense } from '../../lib/openai.js';
 import { saveExpense } from '../../lib/supabase.js';
